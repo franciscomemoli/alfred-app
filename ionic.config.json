@@ -1,5 +1,8 @@
 {
-  "name": "myproject",
-  "app_id": "",
-  "type": "ionic1"
+  "name": "alfred",
+  "app_id": "a79312e0",
+  "type": "ionic1",
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }

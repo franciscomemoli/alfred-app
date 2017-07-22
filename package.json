@@ -1,5 +1,5 @@
 {
-  "name": "myproject",
+  "name": "alfred",
   "version": "0.0.1",
   "description": "An Ionic project",
   "devDependencies": {
@@ -9,5 +9,7 @@
     "gulp-clean-css": "^3.7.0",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
   }
 }
