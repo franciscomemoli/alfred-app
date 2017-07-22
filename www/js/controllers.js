@@ -1,13 +1,26 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicDeploy) {
+  $ionicDeploy.check().then(function(snapshotAvailable) {
+    if (snapshotAvailable) {
+      $ionicDeploy.download().then(function() {
+        $ionicDeploy.extract().then(function() {
+          $ionicDeploy.load();
+        }, function(error) {
+        }, function(progress) {
+          // Do something with the zip extraction progress
+          console.log(progress);
+        });
+      }, function(error) {
+      }, function(progress) {
+          if(progress>=100){
+            $cordovaSplashscreen.hide()
+          }
+          console.log(progress);
+      });
+    }
+  }, function(error) {
+  });
 
   // Form data for the login modal
   $scope.loginData = {};

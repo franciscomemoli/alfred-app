@@ -11,5 +11,7 @@
     "gulp-sass": "^3.1.0"
   },
   "dependencies": {
+    "@ionic/cloud": "^0.16.0",
+    "bluebird": "^3.5.0"
   }
 }
