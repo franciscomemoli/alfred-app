@@ -6,7 +6,7 @@
     <title>Ionic Material Docs</title>
     <link href="https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic" rel="stylesheet">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet" />
+    <link href="lib/ionic-material/dist/ionic.material.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet">
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -16,6 +16,8 @@
     <script src="lib/bluebird.min.js"></script>
     <script src="lib/ionic.cloud.min.js"></script>
     <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
+    <script src="lib/firebase/firebase.js"></script>
+    <script src="lib/angularfire/dist/angularfire.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     <!-- your app's js -->
@@ -25,8 +27,23 @@
     <script src="js/controllers/ComponentsCtrl.js"></script>
     <script src="js/controllers/ListsCtrl.js"></script>
     <script src="js/controllers/SetupCtrl.js"></script>
+    <script src="js/controllers/DocumentCtrl.js"></script>
+    <script src="js/controllers/categories/CategoriesListCtrl.js"></script>
+    <script src="js/controllers/categories/CategoriesEditCtrl.js"></script>
     <script src="js/controllers/ExtensionsCtrl.js"></script>
     <script src="js/controllers/MotionCtrl.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAaiOYoVK4oapgADGyW0WzllXjT_LDkV28",
+        authDomain: "alfred-8d748.firebaseapp.com",
+        databaseURL: "https://alfred-8d748.firebaseio.com",
+        projectId: "alfred-8d748",
+        storageBucket: "alfred-8d748.appspot.com",
+        messagingSenderId: "287402096797"
+      };
+      firebase.initializeApp(config);
+    </script>
 </head>
 <body ng-app="starter">
     <!--<ion-pane>

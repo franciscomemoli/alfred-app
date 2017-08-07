@@ -1,0 +1,21 @@
+<ion-view view-title="Ionic Components+">
+	<ion-content>
+        <h4 class="border-top">
+        <a ui-sref="app.categories_list">Categorías</a>
+        </h4>
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Título</span>
+                <input ng-model="category.title" type="text" placeholder="Título">
+            </label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Descripción</span>
+				<textarea ng-model="category.description" placeholder="Descripción"></textarea>
+			</label>
+            <button class="button button-block button-calm ink" data-ink-color="#9DEAFF" data-ink-opacity="1" ng-click="save(category)">
+                Submit
+            </button>
+        </div>
+
+	</ion-content>
+</ion-view>
