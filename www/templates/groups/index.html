@@ -1,0 +1,18 @@
+<ion-view view-title="Lista de categorías">
+	<ion-content>
+		<button class="button button-positive button-fab button-fab-bottom-right" ui-sref="app.categories_edit">
+		    <i class="icon ion-plus-round"></i>
+		</button>
+        <div class="im-wrapper">
+            <h4 class="no-border no-padding-bottom">Grupos</h4>
+        </div>
+        <ion-list class="animate-ripple">
+            <ion-item class="item-icon-right item-avatar" ng-repeat="group in groups" >
+                <img src="img/material4.jpg">
+                <h2>{{category.title}}</h2>
+                <p>{{category.description}}{{category.documentsCount}}</p>
+                <i class="icon ion-beer muted"></i>
+            </ion-item>
+        </ion-list>
+	</ion-content>
+</ion-view>
