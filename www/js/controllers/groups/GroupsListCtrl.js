@@ -5,13 +5,11 @@ app.controller('GroupsListCtrl', function ($scope, $stateParams, ionicMaterialMo
 	var groups = $firebaseObject(ref);
 	groups.$loaded()
 	.then(function() {
-		debugger
 	    document.getElementsByTagName('ion-list')[0].className += ' animate-blinds';
 	    setTimeout(function() {
 	        ionicMaterialMotion.blinds(); // ionic.material.motion.blinds(); //ionicMaterialMotion
 	    }, 100);
-
-		console.log($scope.groups);
+		$scope.groups = groups;
 	})
 	.catch(function(err) {
 		console.error(err);
