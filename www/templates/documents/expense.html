@@ -1,0 +1,23 @@
+<ion-view view-title="Grupo">
+	<ion-content>
+	<div class="list">
+	  <label class="item item-input item-floating-label">
+	    <span class="input-label">Descripción</span>
+	    <input type="text" placeholder="Description">
+	  </label>
+	   <select class="item item-input item-floating-label">
+	      <option ng-repeat="account in accounts">{{account.name}}</option>
+	    </select>
+	   <select class="item item-input item-floating-label">
+	      <option ng-repeat="category in categories">{{category.name}}</option>
+	    </select>
+	  <label class="item item-input item-floating-label">
+	    <span class="input-label">Monto</span>
+	    <input type="number" placeholder="Monto">
+	  </label>
+	</div>
+    <button class="button button-block button-positive">
+	  Cargar
+	</button>
+	</ion-content>
+</ion-view>

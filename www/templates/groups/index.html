@@ -1,4 +1,4 @@
-<ion-view view-title="Lista de categorías">
+<ion-view view-title="Lista de Grupos">
 	<ion-content>
 		<button class="button button-positive button-fab button-fab-bottom-right" ui-sref="app.categories_edit">
 		    <i class="icon ion-plus-round"></i>
@@ -7,7 +7,7 @@
             <h4 class="no-border no-padding-bottom">Grupos</h4>
         </div>
         <ion-list class="animate-ripple">
-            <ion-item class="item-icon-right item-avatar" ng-repeat="group in groups" >
+            <ion-item class="item-icon-right item-avatar" ng-repeat="group in groups" ui-sref="app.group({id:group.id})">
                 <img src="img/material4.jpg">
                 <h2>{{group.name}}</h2>
                 <i class="icon ion-beer muted"></i>

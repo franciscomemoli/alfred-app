@@ -4,7 +4,15 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic', 'ionic.cloud', 'ionic-material', 'firebase']);
-
+app.run(["$rootScope", "$state", function($rootScope, $state) {
+  $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+    // We can catch the error thrown when the $requireSignIn promise is rejected
+    // and redirect the user back to the home page
+    if (error === "AUTH_REQUIRED") {
+      $state.go("login");
+    }
+  });
+}]);
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -33,9 +41,58 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+        controller: 'AppCtrl',
+        resolve: {
+            // controller will not be loaded until $requireSignIn resolves
+            // Auth refers to our $firebaseAuth wrapper in the factory below
+            "currentAuth": ["Auth", function(Auth) {
+              // $requireSignIn returns a promise so the resolve waits for it to complete
+              // If the promise is rejected, it will throw a $stateChangeError (see above)
+              return Auth.$requireSignIn();
+            }]
+        }
     })
-
+    .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+    })
+    .state('logout', {
+        url: '/logout',
+        template: 'saliendo',
+        controller: 'LogoutCtrl'
+    })
+    .state('app.groups_list', {
+        url: '/groups',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/groups/index.html',
+                controller: 'GroupsListCtrl'
+            }
+        }
+    })
+    .state('app.group', {
+        url: '/group/{id}',
+        views: {
+            'menuGroupItems': {
+                templateUrl: 'templates/menuGroup.html',
+                controller: 'GroupsListCtrl'
+            },
+            'menuContent': {
+                templateUrl: 'templates/groups/show.html',
+                controller: 'GroupShowCtrl',
+            }
+        }
+    })
+    .state('app.groupexpense', {
+        url: '/group/{id}/expense',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/documents/expense.html',
+                controller: 'ExpenseCtrl'
+            }
+        }
+    })
     .state('app.lists', {
         url: '/lists',
         views: {
@@ -85,24 +142,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('app.login', {
-        url: '/login',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
-            }
-        }
-    })
-    .state('app.document', {
-        url: '/document',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/document/new.html',
-                controller: 'DocumentCtrl'
-            }
-        }
-    })
     .state('app.categories_list', {
         url: '/categories',
         views: {
@@ -110,15 +149,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 templateUrl: 'templates/categories/index.html',
                 controller: 'CategoriesListCtrl'
             }
-        },
-        resolve: {
-            // controller will not be loaded until $requireSignIn resolves
-            // Auth refers to our $firebaseAuth wrapper in the factory below
-            "currentAuth": ["Auth", function(Auth) {
-              // $requireSignIn returns a promise so the resolve waits for it to complete
-              // If the promise is rejected, it will throw a $stateChangeError (see above)
-              return Auth.$requireSignIn();
-            }]
         }
     })
     .state('app.categories_edit', {
@@ -128,33 +158,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 templateUrl: 'templates/categories/new.html',
                 controller: 'CategoriesEditCtrl'
             }
-        },
-        resolve: {
-        // controller will not be loaded until $requireSignIn resolves
-        // Auth refers to our $firebaseAuth wrapper in the factory below
-        "currentAuth": ["Auth", function(Auth) {
-          // $requireSignIn returns a promise so the resolve waits for it to complete
-          // If the promise is rejected, it will throw a $stateChangeError (see above)
-          return Auth.$requireSignIn();
-        }]
-        }
-    })
-    .state('app.groups_list', {
-        url: '/groups',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/groups/index.html',
-                controller: 'GroupsListCtrl'
-            }
-        },
-        resolve: {
-        // controller will not be loaded until $requireSignIn resolves
-        // Auth refers to our $firebaseAuth wrapper in the factory below
-        "currentAuth": ["Auth", function(Auth) {
-          // $requireSignIn returns a promise so the resolve waits for it to complete
-          // If the promise is rejected, it will throw a $stateChangeError (see above)
-          return Auth.$requireSignIn();
-        }]
         }
     })
     ;
@@ -162,3 +165,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/components');
 });
+app.factory("Auth", ["$firebaseAuth",
+  function($firebaseAuth) {
+    return $firebaseAuth();
+  }
+]);

@@ -1,0 +1,29 @@
+<ion-view view-title="Grupo">
+	<ion-content>
+		<button class="button button-positive button-fab button-fab-bottom-right" ui-sref="app.categories_edit">
+		    <i class="icon ion-plus-round"></i>
+		</button>
+        <div class="im-wrapper">
+            <h4 class="no-border no-padding-bottom">Grupo</h4>
+        </div>
+        <img src="img/material4.jpg">
+        <h2>{{group.name}}</h2>
+        <i class="icon ion-beer muted"></i>
+        <div class="list" ng-repeat="account in group.accounts">
+          <a class="item item-icon-left" href="#">
+            <h2>{{account.name}}</h2>
+            <span class="badge ">${{account.total}}</span>
+          </a>
+
+        </div>
+        <div class="button-bar">
+              <button class="button button-outline button-positive">
+              Ingreso
+            </button>
+            <button class="button button-outline button-positive" ui-sref="app.groupexpense({id:group.id})">
+                Gasto
+            </button>
+        </div>
+        
+	</ion-content>
+</ion-view>

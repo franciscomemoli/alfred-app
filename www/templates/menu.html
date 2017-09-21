@@ -1,5 +1,5 @@
 ﻿
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="true">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-assertive">
             <ion-nav-back-button class="no-text">
@@ -22,6 +22,7 @@
         </ion-header-bar>
         <ion-content class="stable-bg has-expanded-header">
             <ion-list>
+            <!--
                 <ion-item nav-clear menu-close href="#/app/components">
                     Components+
                 </ion-item>
@@ -36,18 +37,15 @@
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/ink">
                     Ink
-                </ion-item>
-                <ion-item nav-clear menu-close href="#/app/document">
-                    Documentos
-                </ion-item>
-                <ion-item nav-clear menu-close href="#/app/categories">
-                    Categories
-                </ion-item>
+                </ion-item>-->
                 <ion-item nav-clear menu-close href="#/app/groups">
                     Grupos
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/login">
-                    Login
+                <ion-item >
+                <ion-nav-view name="menuGroupItems"></ion-nav-view>
+                </ion-item>
+                <ion-item ng-click="close()">
+                    Logout
                 </ion-item>
             </ion-list>
         </ion-content>
