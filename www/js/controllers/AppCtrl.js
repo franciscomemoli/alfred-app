@@ -33,4 +33,7 @@
         $scope.auth.$signOut();
         $state.go("login");
     }
+    $scope.goTo = function(name, params){
+        $state.go(name, params)
+    }
 });

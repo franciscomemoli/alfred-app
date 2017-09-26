@@ -41,8 +41,8 @@
                 <ion-item nav-clear menu-close href="#/app/groups">
                     Grupos
                 </ion-item>
-                <ion-item >
-                <ion-nav-view name="menuGroupItems"></ion-nav-view>
+                <ion-item nav-clear menu-close ng-click="goTo('app.categories_list',{groupId: groupIdSelected})" ng-show="groupIdSelected">
+                    Categories
                 </ion-item>
                 <ion-item ng-click="close()">
                     Logout

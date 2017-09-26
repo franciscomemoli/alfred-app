@@ -74,10 +74,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('app.group', {
         url: '/group/{id}',
         views: {
-            'menuGroupItems': {
-                templateUrl: 'templates/menuGroup.html',
-                controller: 'GroupsListCtrl'
-            },
             'menuContent': {
                 templateUrl: 'templates/groups/show.html',
                 controller: 'GroupShowCtrl',
@@ -143,7 +139,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
     .state('app.categories_list', {
-        url: '/categories',
+        url: '/categories/:groupId',
         views: {
             'menuContent': {
                 templateUrl: 'templates/categories/index.html',
@@ -163,7 +159,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/components');
+    $urlRouterProvider.otherwise('/app/groups');
 });
 app.factory("Auth", ["$firebaseAuth",
   function($firebaseAuth) {

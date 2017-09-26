@@ -6,8 +6,8 @@
         <div class="im-wrapper">
             <h4 class="no-border no-padding-bottom">Grupos</h4>
         </div>
-        <ion-list class="animate-ripple">
-            <ion-item class="item-icon-right item-avatar" ng-repeat="group in groups" ui-sref="app.group({id:group.id})">
+        <ion-list class="">
+            <ion-item class="item-icon-right item-avatar" ng-repeat="group in groups" ng-click="selectGroup(group)">
                 <img src="img/material4.jpg">
                 <h2>{{group.name}}</h2>
                 <i class="icon ion-beer muted"></i>

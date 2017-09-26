@@ -6,13 +6,16 @@
         <div class="im-wrapper">
             <h4 class="no-border no-padding-bottom">Categorías de gastos</h4>
         </div>
-        <ion-list class="animate-ripple">
+        <ion-list class="">
             <ion-item class="item-icon-right item-avatar" ng-repeat="category in categories" ng-click="editCategory(category);">
                 <img src="img/material4.jpg">
-                <h2>{{category.title}}</h2>
+                <h2>{{category.name}}</h2>
                 <p>{{category.description}}{{category.documentsCount}}</p>
                 <i class="icon ion-beer muted"></i>
             </ion-item>
         </ion-list>
+        <div ng-show="categories.length == 0">
+            No hay categorías por el momento :(
+        </div>
 	</ion-content>
 </ion-view>
