@@ -19,7 +19,7 @@ app.controller('GroupsListCtrl', function ($scope, $rootScope, $stateParams, ion
 		$state.go("app.group",{id: group.id}) 
 	}
 	$scope.editCategory = function (category){
-		$state.go("app.categories_edit",{id: category._id});
+		$state.go("app.categories_edit",{id: category._id, groupId: $rootScope.groupIdSelected});
 	}
 
 });

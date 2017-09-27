@@ -148,7 +148,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
     .state('app.categories_edit', {
-        url: '/categories/edit/{id}',
+        url: '/categories/{groupId}/edit/{id}',
         views: {
             'menuContent': {
                 templateUrl: 'templates/categories/new.html',

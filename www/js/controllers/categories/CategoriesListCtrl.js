@@ -23,7 +23,7 @@ app.controller('CategoriesListCtrl', function ($scope, $rootScope, $stateParams,
 			console.error(err);
 		});
 		$scope.editCategory = function (category){
-			$state.go("app.categories_edit",{id: category._id});
+			$state.go("app.categories_edit",{id: category._id, groupId: $rootScope.groupIdSelected});
 		}
 	}
 

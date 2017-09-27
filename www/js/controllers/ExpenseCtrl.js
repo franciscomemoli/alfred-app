@@ -14,4 +14,12 @@ app.controller('ExpenseCtrl', function ($scope, $stateParams, ionicMaterialInk, 
 	    document.getElementsByTagName('ion-list')[0].className += ' animate-blinds';
 		$scope.categories = categories;
 	})
+	$scope.expense = {};
+	var expenseRef = firebase.database().ref(`groups_expenses/${groupId}/`);
+	$scope.submit = function(expense){
+		var newExpenseRef = expenseRef.push();
+		expense._id = newExpenseRef.key;
+		var saveRef = firebase.database().ref(`groups_expenses/${groupId}/${newExpenseRef.key}`);
+		saveRef.update(expense);
+	}
 });
