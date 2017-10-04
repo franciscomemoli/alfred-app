@@ -14,7 +14,7 @@
     <allow-intent href="geo:*" />
     <universal-links>
         <host name="https://t4y8w.app.goo.gl/" scheme="https" />
-        <host name="http://alfred-8d748.firebaseapp.com/" scheme="https">
+        <host name="alfred-8d748.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
